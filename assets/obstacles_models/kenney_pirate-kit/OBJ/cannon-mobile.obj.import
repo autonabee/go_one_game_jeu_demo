@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cla364y4lscd1"
+path="res://.godot/imported/cannon-mobile.obj-6f2c8426f7e9c13d381d7e458d4b4b78.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cannon-mobile.obj-6f2c8426f7e9c13d381d7e458d4b4b78.mesh"]
+
+source_file="res://assets/obstacles_models/kenney_pirate-kit/OBJ/cannon-mobile.obj"
+dest_files=["res://.godot/imported/cannon-mobile.obj-6f2c8426f7e9c13d381d7e458d4b4b78.mesh", "res://.godot/imported/cannon-mobile.obj-6f2c8426f7e9c13d381d7e458d4b4b78.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

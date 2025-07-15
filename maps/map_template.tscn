@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://di88xvkrp2t55"]
+
+[ext_resource type="PackedScene" uid="uid://s4gqfnssgw67" path="res://assets/map_assets_ready/flags/my_flag_checkers.tscn" id="1_hntlu"]
+[ext_resource type="Script" uid="uid://c8mmq0rxfgpeh" path="res://maps/map.001.gd" id="1_tyvmg"]
+[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://ui/player.tscn" id="3_tyvmg"]
+[ext_resource type="PackedScene" uid="uid://dc2rpancj1mql" path="res://ui/ui.tscn" id="4_lvlek"]
+[ext_resource type="PackedScene" uid="uid://de6ttymk0t1j7" path="res://assets/map_assets_ready/target.tscn" id="5_tyvmg"]
+
+[sub_resource type="Environment" id="Environment_vp2dh"]
+background_mode = 1
+background_color = Color(0.250529, 0.855759, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.910348, 0.787034, 0.697647, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.0976062, 0.567195, 0.898402, 1)
+fog_density = 1.0
+fog_height = -1.0
+fog_height_density = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ko3jq"]
+size = Vector3(6, 3, 6)
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_tyvmg")
+
+[node name="UI" parent="." instance=ExtResource("4_lvlek")]
+
+[node name="Player" parent="." instance=ExtResource("3_tyvmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137993, 0, 0.183611)
+
+[node name="StartPosition" type="Marker3D" parent="."]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.0987118, 0.995116, 0, -0.995116, 0.0987118, 0, 4.22845, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_vp2dh")
+
+[node name="StartPlatform" type="Node" parent="."]
+
+[node name="StartPlatform" type="CSGBox3D" parent="StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(10, 10, 10)
+
+[node name="Obstacles" type="Node" parent="StartPlatform"]
+
+[node name="FinishArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.4048)
+
+[node name="EndPlatform" type="CSGBox3D" parent="FinishArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -5, 1)
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 10, 18)
+
+[node name="MyFlagCheckers" parent="FinishArea" instance=ExtResource("1_hntlu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900002, 1.5, 0.0999985)
+shape = SubResource("BoxShape3D_ko3jq")
+
+[node name="Section" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section"]
+
+[node name="Platform" type="CSGBox3D" parent="Section/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(10, 10, 10)
+
+[node name="Obstacles" type="Node" parent="Section"]
+
+[node name="Targets" type="Node" parent="Section"]
+
+[node name="Target" parent="Section/Targets" instance=ExtResource("5_tyvmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

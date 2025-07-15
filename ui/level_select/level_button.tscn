@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://btjgr6o4grocp"]
+
+[ext_resource type="Theme" uid="uid://dyrwbrn8xhqmc" path="res://assets/themes/level_select_theme.tres" id="1_7xx7i"]
+[ext_resource type="Script" uid="uid://2v6r5sck7q5" path="res://ui/level_select/level_button.gd" id="2_uennp"]
+
+[node name="LevelButton" type="Button"]
+texture_filter = 1
+offset_left = 56.0
+offset_right = 256.0
+offset_bottom = 136.0
+theme = ExtResource("1_7xx7i")
+text = "1"
+icon_alignment = 1
+script = ExtResource("2_uennp")
+level_scene_path = "uid://djib437sllg3s"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

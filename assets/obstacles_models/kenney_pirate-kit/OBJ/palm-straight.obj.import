@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bsr3r4myok30s"
+path="res://.godot/imported/palm-straight.obj-9547bd351ab1f2b17b84782af2744971.mesh"
+
+[deps]
+
+files=["res://.godot/imported/palm-straight.obj-9547bd351ab1f2b17b84782af2744971.mesh"]
+
+source_file="res://assets/obstacles_models/kenney_pirate-kit/OBJ/palm-straight.obj"
+dest_files=["res://.godot/imported/palm-straight.obj-9547bd351ab1f2b17b84782af2744971.mesh", "res://.godot/imported/palm-straight.obj-9547bd351ab1f2b17b84782af2744971.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

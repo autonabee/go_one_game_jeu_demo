@@ -1,0 +1,79 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://de61k6i5aq6u6"]
+
+[ext_resource type="FontFile" uid="uid://b8vam03a4767" path="res://assets/fonts/connection/ConnectionBold.otf" id="1_ndjfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf8fc"]
+bg_color = Color(0.929412, 0.282353, 0.403922, 0.588235)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.588235)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+anti_aliasing_size = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixtae"]
+bg_color = Color(0.999998, 0.163842, 0.201116, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.890196, 0.447059, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lh1a"]
+bg_color = Color(1, 0.164706, 0.2, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.890196, 0.447059, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xx7i"]
+bg_color = Color(1, 0.135329, 0.208349, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x258h"]
+bg_color = Color(1, 0.164706, 0.2, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.890196, 0.447059, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[resource]
+default_font = ExtResource("1_ndjfm")
+default_font_size = 40
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 0.890196, 0.447059, 1)
+Button/colors/font_hover_color = Color(1, 0.890196, 0.447059, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.890196, 0.447059, 1)
+Button/colors/font_pressed_color = Color(1, 0.890196, 0.447059, 1)
+Button/font_sizes/font_size = 40
+Button/styles/disabled = SubResource("StyleBoxFlat_sf8fc")
+Button/styles/focus = SubResource("StyleBoxFlat_ixtae")
+Button/styles/hover = SubResource("StyleBoxFlat_1lh1a")
+Button/styles/normal = SubResource("StyleBoxFlat_7xx7i")
+Button/styles/pressed = SubResource("StyleBoxFlat_x258h")

@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://buek3bvitdwok"]
+
+[ext_resource type="Script" uid="uid://b8rw5ojss7br3" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/player_model/sophia_skin/sophia_skin.tscn" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://cdto3ipkvfbxl" path="res://assets/gun_model/gun_model.glb" id="4_yw30f"]
+[ext_resource type="Texture2D" uid="uid://ba34k2jtc8d50" path="res://player/gun/reticle.png" id="6_g6k8r"]
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.261799, 0.0872664, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yw30f"]
+resource_name = "recoil"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0.2), Vector3(0, -0.027, 0.13), Vector3(0, 0, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.261799, 0.0872664, 0), Vector3(-0.314159, 0.0872665, -0.00523599), Vector3(-0.261799, 0.0872665, -0.00523599)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6k8r"]
+_data = {
+&"RESET": SubResource("Animation_qjkh3"),
+&"recoil": SubResource("Animation_yw30f")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qjkh3"]
+viewport_path = NodePath("SophiaSkin/GunPivot/SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.442466
+height = 1.5998
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 7
+script = ExtResource("1_onrkg")
+
+[node name="SophiaSkin" parent="." instance=ExtResource("2_i3pqv")]
+unique_name_in_owner = true
+
+[node name="GunPivot" type="Node3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.8, 0)
+
+[node name="gun_model" parent="SophiaSkin/GunPivot" instance=ExtResource("4_yw30f")]
+transform = Transform3D(0.996195, -0.0225575, 0.0841859, 0, 0.965926, 0.258819, -0.0871557, -0.257834, 0.96225, 0, 0, 0.2)
+
+[node name="Marker3D" type="Marker3D" parent="SophiaSkin/GunPivot/gun_model"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.50285)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SophiaSkin/GunPivot/gun_model"]
+libraries = {
+&"": SubResource("AnimationLibrary_g6k8r")
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="SophiaSkin/GunPivot/gun_model"]
+transform = Transform3D(0.5, 1.95578e-08, -1.11759e-08, -1.67638e-08, 0.5, 0, 5.21541e-08, 2.01166e-07, 0.5, 0.376407, 0.76064, 3.00579)
+texture = SubResource("ViewportTexture_qjkh3")
+
+[node name="SubViewport" type="SubViewport" parent="SophiaSkin/GunPivot"]
+transparent_bg = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SophiaSkin/GunPivot/SubViewport"]
+
+[node name="Reticle" type="TextureRect" parent="SophiaSkin/GunPivot/SubViewport/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -77.0
+offset_right = 77.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_g6k8r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.809909, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39127, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 0, 0)
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+unique_name_in_owner = true

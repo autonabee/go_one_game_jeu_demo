@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhcs8hku8ix2c"]
+
+[ext_resource type="Texture2D" uid="uid://cj6b5cx2b65fl" path="res://assets/images/sky_bg.jpg" id="1_p3jkh"]
+[ext_resource type="PackedScene" uid="uid://btjgr6o4grocp" path="res://ui/level_select/level_button.tscn" id="1_w1uxe"]
+[ext_resource type="Theme" uid="uid://dyrwbrn8xhqmc" path="res://assets/themes/level_select_theme.tres" id="3_wccys"]
+
+[sub_resource type="GDScript" id="GDScript_p3jkh"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$LevelButton1.grab_focus()
+	
+	for c in get_children() :
+		if c.has_method(\"load_scene_path\") :
+			c.load_scene_path()
+"
+
+[node name="LevelSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_p3jkh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -540.0
+offset_right = 1976.0
+offset_bottom = 1460.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_p3jkh")
+
+[node name="LevelButton1" parent="." instance=ExtResource("1_w1uxe")]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 368.0
+offset_right = 312.0
+offset_bottom = 464.0
+
+[node name="LevelButton2" parent="." instance=ExtResource("1_w1uxe")]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 368.0
+offset_right = 608.0
+offset_bottom = 464.0
+text = "2"
+level_number = "2"
+
+[node name="LevelButton3" parent="." instance=ExtResource("1_w1uxe")]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 368.0
+offset_right = 920.0
+offset_bottom = 464.0
+text = "3"
+level_number = "3"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 75.0
+offset_right = 400.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme = ExtResource("3_wccys")
+text = "LEVEL SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,465 @@
+[gd_scene load_steps=21 format=3 uid="uid://by07js468se16"]
+
+[ext_resource type="Script" uid="uid://c8mmq0rxfgpeh" path="res://maps/map.001.gd" id="1_5mk38"]
+[ext_resource type="PackedScene" uid="uid://dc2rpancj1mql" path="res://ui/ui.tscn" id="2_jyl2p"]
+[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://ui/player.tscn" id="3_f2rf0"]
+[ext_resource type="Material" uid="uid://b6msw4s8xqthg" path="res://assets/materials/grass.tres" id="4_f2rf0"]
+[ext_resource type="PackedScene" uid="uid://de6ttymk0t1j7" path="res://assets/map_assets_ready/target.tscn" id="5_5mk38"]
+[ext_resource type="PackedScene" uid="uid://s4gqfnssgw67" path="res://assets/map_assets_ready/flags/my_flag_checkers.tscn" id="5_obykw"]
+[ext_resource type="Material" uid="uid://tc6rrasnmp0c" path="res://assets/materials/rock.tres" id="6_04wqk"]
+[ext_resource type="PackedScene" uid="uid://5sd40ikj50u7" path="res://assets/map_assets_ready/obstacles/my_rocks_a.tscn" id="7_obykw"]
+[ext_resource type="PackedScene" uid="uid://buv48p3sljro2" path="res://assets/map_assets_ready/obstacles/my_rocks_b.tscn" id="8_chers"]
+[ext_resource type="PackedScene" uid="uid://cyqstjjmtrnd5" path="res://assets/map_assets_ready/obstacles/my_wall_corner.tscn" id="10_wqw63"]
+[ext_resource type="PackedScene" uid="uid://bsd83v0d8d8vt" path="res://assets/map_assets_ready/obstacles/my_wall.tscn" id="11_n8nb3"]
+[ext_resource type="Material" uid="uid://cuby48cgepry4" path="res://assets/materials/sand.tres" id="12_8ufs1"]
+[ext_resource type="PackedScene" uid="uid://vstyxm0iqkcd" path="res://assets/map_assets_ready/obstacles/my_rocks_c.tscn" id="13_5qcph"]
+[ext_resource type="PackedScene" uid="uid://budt8k1cw8x83" path="res://assets/map_assets_ready/obstacles/my_column.tscn" id="14_dgynt"]
+[ext_resource type="PackedScene" uid="uid://cumf1d1d771ym" path="res://assets/map_assets_ready/obstacles/my_column_damaged.tscn" id="15_lk1op"]
+[ext_resource type="PackedScene" uid="uid://30d82mn4kfjj" path="res://assets/map_assets_ready/obstacles/my_cannon_mobile.tscn" id="16_1o0qf"]
+[ext_resource type="PackedScene" uid="uid://dsja3in3pssmu" path="res://assets/map_assets_ready/obstacles/my_cannon_ball.tscn" id="17_rn0o5"]
+[ext_resource type="PackedScene" uid="uid://dw0kxvpbxjs16" path="res://assets/map_assets_ready/obstacles/my_bricks.tscn" id="18_o6ub7"]
+
+[sub_resource type="Environment" id="Environment_vp2dh"]
+background_mode = 1
+background_color = Color(0.250529, 0.855759, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.910348, 0.787034, 0.697647, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.0976062, 0.567195, 0.898402, 1)
+fog_sun_scatter = 0.3
+fog_density = 0.7
+fog_height = -5.0
+fog_height_density = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ko3jq"]
+size = Vector3(6, 3, 6)
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_5mk38")
+
+[node name="UI" parent="." instance=ExtResource("2_jyl2p")]
+
+[node name="Player" parent="." instance=ExtResource("3_f2rf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137993, 0, 0.183611)
+
+[node name="StartPosition" type="Marker3D" parent="."]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.0987118, 0.995116, 0, -0.995116, 0.0987118, 0, 4.22845, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_vp2dh")
+
+[node name="StartPlatform" type="Node" parent="."]
+
+[node name="StartPlatform" type="CSGBox3D" parent="StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(10, 10, 10)
+material = ExtResource("4_f2rf0")
+
+[node name="Obstacles" type="Node" parent="StartPlatform"]
+
+[node name="FinishArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -16.4048)
+
+[node name="EndPlatform" type="CSGBox3D" parent="FinishArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3, 2)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 6, 14)
+material = ExtResource("6_04wqk")
+
+[node name="MyFlagCheckers" parent="FinishArea" instance=ExtResource("5_obykw")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 1, 0, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900002, 1.5, 4.1)
+shape = SubResource("BoxShape3D_ko3jq")
+
+[node name="Section1" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section1"]
+
+[node name="Platform1" type="CSGBox3D" parent="Section1/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 13.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(8, 3, 17)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform2" type="CSGBox3D" parent="Section1/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.4, -4.9, 24.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(4, 1, 4)
+material = ExtResource("6_04wqk")
+
+[node name="Platform3" type="CSGBox3D" parent="Section1/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.07386, -5.3, 22.3)
+use_collision = true
+collision_layer = 2
+size = Vector3(4, 4, 4)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform5" type="CSGBox3D" parent="Section1/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.07386, -5.3, 22.3)
+use_collision = true
+collision_layer = 2
+size = Vector3(4, 4, 4)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform4" type="CSGBox3D" parent="Section1/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8, -2.8, 23.7)
+use_collision = true
+collision_layer = 2
+size = Vector3(4, 1, 4)
+material = ExtResource("6_04wqk")
+
+[node name="Obstacles" type="Node" parent="Section1"]
+
+[node name="MyRocksA" parent="Section1/Obstacles" instance=ExtResource("7_obykw")]
+transform = Transform3D(0.375, 0, 0.649519, 0, 0.75, 0, -0.649519, 0, 0.375, 2, -6, 11)
+
+[node name="MyRocksB" parent="Section1/Obstacles" instance=ExtResource("8_chers")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -2, -6, 17)
+
+[node name="Targets" type="Node" parent="Section1"]
+
+[node name="Target2" parent="Section1/Targets" instance=ExtResource("5_5mk38")]
+transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, -8, -2.34937, 12.198)
+
+[node name="Section2" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section2"]
+
+[node name="Platform5" type="CSGBox3D" parent="Section2/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8, -3.3, 17)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 4, 15)
+material = ExtResource("6_04wqk")
+
+[node name="Platform6" type="CSGBox3D" parent="Section2/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8, -0.8, 13)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 1, 7)
+material = ExtResource("6_04wqk")
+
+[node name="Platform7" type="CSGBox3D" parent="Section2/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8, 0.2, 12)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 1, 5)
+material = ExtResource("6_04wqk")
+
+[node name="Obstacles" type="Node" parent="Section2"]
+
+[node name="MyWallCorner" parent="Section2/Obstacles" instance=ExtResource("10_wqw63")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27, -1.3, 24)
+
+[node name="MyWall" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, -1.3, 22)
+
+[node name="MyWall2" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, -1.3, 21)
+
+[node name="MyWall3" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, -1.3, 20)
+
+[node name="MyWall4" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, -1.3, 18)
+
+[node name="MyWallCorner2" parent="Section2/Obstacles" instance=ExtResource("10_wqw63")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -27, -1.3, 17)
+
+[node name="MyWall5" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -1.3, 17)
+
+[node name="MyWall6" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -1.3, 24)
+
+[node name="MyWall7" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -1.3, 17)
+
+[node name="MyWall8" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -1.3, 17)
+
+[node name="MyWall10" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, -1.3, 17)
+
+[node name="MyWall11" parent="Section2/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5, -1.3, 19)
+
+[node name="MyWallCorner3" parent="Section2/Obstacles" instance=ExtResource("10_wqw63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, -1.3, 24)
+
+[node name="Targets" type="Node" parent="Section2"]
+
+[node name="Target3" parent="Section2/Targets" instance=ExtResource("5_5mk38")]
+transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, -22, 1.65063, 4.198)
+
+[node name="Section3" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section3"]
+
+[node name="Platform8" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.3, -12.3, 2.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(19, 4, 12)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform15" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8, -10.05, 1.05)
+use_collision = true
+collision_layer = 2
+size = Vector3(10, 0.1, 4.9)
+material = ExtResource("12_8ufs1")
+
+[node name="Platform16" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -10.35, 1.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(12.4, 0.5, 6)
+material = ExtResource("12_8ufs1")
+
+[node name="Platform9" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3, -12.3, -9)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 4, 11)
+material = ExtResource("6_04wqk")
+
+[node name="Platform10" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3, -12.3, -18)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 4, 11)
+material = ExtResource("6_04wqk")
+
+[node name="Platform11" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3, -12.3, -27)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 4, 11)
+material = ExtResource("6_04wqk")
+
+[node name="Platform12" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8, -13.3, -31)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 4, 3)
+material = ExtResource("6_04wqk")
+
+[node name="Platform13" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3, -11.3, -30)
+use_collision = true
+collision_layer = 2
+size = Vector3(9, 4, 3)
+material = ExtResource("6_04wqk")
+
+[node name="Platform14" type="CSGBox3D" parent="Section3/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799999, -9.3, -29)
+use_collision = true
+collision_layer = 2
+size = Vector3(8, 4, 3)
+material = ExtResource("6_04wqk")
+
+[node name="Obstacles" type="Node" parent="Section3"]
+
+[node name="MyRocksC" parent="Section3/Obstacles" instance=ExtResource("13_5qcph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -10.3, 6)
+
+[node name="MyRocksB" parent="Section3/Obstacles" instance=ExtResource("8_chers")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -29, -10.3, 6)
+
+[node name="MyRocksA" parent="Section3/Obstacles" instance=ExtResource("7_obykw")]
+transform = Transform3D(-0.0653668, 0, 0.747146, 0, 0.75, 0, -0.747146, 0, -0.0653668, -33, -10.3, 3)
+
+[node name="MyColumn" parent="Section3/Obstacles" instance=ExtResource("14_dgynt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -10, 1.4)
+
+[node name="MyColumn2" parent="Section3/Obstacles" instance=ExtResource("14_dgynt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -10, 1.4)
+
+[node name="MyColumn3" parent="Section3/Obstacles" instance=ExtResource("14_dgynt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -10, 1.4)
+
+[node name="MyColumnDamaged" parent="Section3/Obstacles" instance=ExtResource("15_lk1op")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -10, 1.4)
+
+[node name="MyColumnDamaged2" parent="Section3/Obstacles" instance=ExtResource("15_lk1op")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, -10, 1.4)
+
+[node name="MyCannonMobile" parent="Section3/Obstacles" instance=ExtResource("16_1o0qf")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -19, -10.3, 3)
+
+[node name="MyCannonBall" parent="Section3/Obstacles" instance=ExtResource("17_rn0o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -10, -1)
+
+[node name="MyBricks" parent="Section3/Obstacles" instance=ExtResource("18_o6ub7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2, -10, -0.5)
+
+[node name="MyBricks2" parent="Section3/Obstacles" instance=ExtResource("18_o6ub7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, -10.3, 2.6)
+
+[node name="Targets" type="Node" parent="Section3"]
+
+[node name="Target" parent="Section3/Targets" instance=ExtResource("5_5mk38")]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -25.4, -9, -40)
+
+[node name="Target2" parent="Section3/Targets" instance=ExtResource("5_5mk38")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -18.4, -9, -17)
+value = 200
+
+[node name="Section4" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section4"]
+
+[node name="Platform15" type="CSGBox3D" parent="Section4/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.2, -8.3, -19.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(22, 4, 20)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform16" type="CSGBox3D" parent="Section4/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.2, -5.8, -19.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(12, 1, 20)
+material = ExtResource("6_04wqk")
+
+[node name="Platform17" type="CSGBox3D" parent="Section4/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.2, -4.8, -19.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(8, 1, 20)
+material = ExtResource("6_04wqk")
+
+[node name="Obstacles" type="Node" parent="Section4"]
+
+[node name="MyWallCorner" parent="Section4/Obstacles" instance=ExtResource("10_wqw63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -4.3, -17)
+
+[node name="MyWallCorner2" parent="Section4/Obstacles" instance=ExtResource("10_wqw63")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, -4.3, -17)
+
+[node name="MyWall" parent="Section4/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, -4.3, -22)
+
+[node name="MyWall4" parent="Section4/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -4.3, -17)
+
+[node name="MyWall2" parent="Section4/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, -6.3, -27)
+
+[node name="MyWall3" parent="Section4/Obstacles" instance=ExtResource("11_n8nb3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, -6.3, -29)
+
+[node name="Targets" type="Node" parent="Section4"]
+
+[node name="Target" parent="Section4/Targets" instance=ExtResource("5_5mk38")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 13, -5, 0)
+
+[node name="Section5" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Section5"]
+
+[node name="Platform18" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7, -5.3, -19.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(9, 2, 20)
+material = ExtResource("4_f2rf0")
+
+[node name="Platform28" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7, -4.1, -18.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(7, 0.4, 18)
+material = ExtResource("12_8ufs1")
+
+[node name="Platform19" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, -3.6, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(6, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform20" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7, -2.6, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform21" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7, -1.6, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform22" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, -0.6, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform23" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7, 0.4, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform24" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 1.4, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform25" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 1.4, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform26" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7, 2.4, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Platform27" type="CSGBox3D" parent="Section5/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, 3.4, -12.5)
+use_collision = true
+collision_layer = 2
+size = Vector3(3, 1, 6)
+material = ExtResource("6_04wqk")
+
+[node name="Obstacles" type="Node" parent="Section5"]
+
+[node name="MyColumnDamaged" parent="Section5/Obstacles" instance=ExtResource("15_lk1op")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 28.8, -4, -26)
+
+[node name="MyColumn" parent="Section5/Obstacles" instance=ExtResource("14_dgynt")]
+transform = Transform3D(0.517638, -1.93185, 0, 1.93185, 0.517638, 0, 0, 0, 2, 31, -4, -22)
+
+[node name="MyColumn2" parent="Section5/Obstacles" instance=ExtResource("14_dgynt")]
+transform = Transform3D(-0.75, -1.67303, -0.799038, 1.79904, -0.448288, -0.75, 0.448288, -1, 1.67303, 29, -3.8, -17)
+
+[node name="Targets" type="Node" parent="Section5"]
