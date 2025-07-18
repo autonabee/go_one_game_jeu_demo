@@ -42,7 +42,7 @@ The player has a limited amount of time to complete a level while scoring as man
 - `ui/` : Level selection menu and transition screens
 - `main.tscn` and `main.gd` : Main scene and script to start the game
 
-## Possible Improvments
+## Possible Improvements
 
 - **Gun reticle** : Currently a sprite attached to the gun. It's not well-calibrated and can sometimes appear behind a target if the target is closer to the player.
 - **Respawning** : The player respawns at the last position on the floor before the fall. If the player is in movement, it sometimes causes an endless falling and respawning loop.
