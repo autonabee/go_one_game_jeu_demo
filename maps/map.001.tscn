@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://de6ttymk0t1j7" path="res://assets/map_assets_ready/target.tscn" id="6_j0546"]
 [ext_resource type="PackedScene" uid="uid://mq3u3f4ortpb" path="res://assets/map_assets_ready/obstacles/my_chest.tscn" id="6_u1iuh"]
 [ext_resource type="PackedScene" uid="uid://cnacba8jflatp" path="res://assets/map_assets_ready/obstacles/my_barrel.tscn" id="7_erho1"]
-[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://ui/player.tscn" id="7_lrnbg"]
+[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://player/player.tscn" id="7_lrnbg"]
 [ext_resource type="PackedScene" uid="uid://chsjjhrivqdxl" path="res://assets/map_assets_ready/obstacles/my_palm_straight.tscn" id="8_u7wmw"]
 [ext_resource type="PackedScene" uid="uid://1ct11j4mn32d" path="res://assets/map_assets_ready/obstacles/my_palm_bend.tscn" id="9_3mwjy"]
 [ext_resource type="PackedScene" uid="uid://dc2rpancj1mql" path="res://ui/ui.tscn" id="9_wyco4"]

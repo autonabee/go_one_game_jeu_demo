@@ -74,7 +74,7 @@ func save_game() -> void:
 	var unlocked_levels_json = JSON.stringify(unlocked_levels)
 	save_file.store_line(unlocked_levels_json)
 
-func load_save():
+func load_save() -> void:
 	"""
 	Fonction chargeant la sauvegarde des meilleurs scores et niveaux débloqués
 	"""

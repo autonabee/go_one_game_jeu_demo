@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhcs8hku8ix2c"]
+[gd_scene load_steps=6 format=3 uid="uid://dhcs8hku8ix2c"]
 
 [ext_resource type="Texture2D" uid="uid://cj6b5cx2b65fl" path="res://assets/images/sky_bg.jpg" id="1_p3jkh"]
 [ext_resource type="PackedScene" uid="uid://btjgr6o4grocp" path="res://ui/level_select/level_button.tscn" id="1_w1uxe"]
 [ext_resource type="Theme" uid="uid://dyrwbrn8xhqmc" path="res://assets/themes/level_select_theme.tres" id="3_wccys"]
+[ext_resource type="Script" uid="uid://jywldawjjc6b" path="res://ui/button.gd" id="4_0ug5h"]
 
 [sub_resource type="GDScript" id="GDScript_p3jkh"]
 script/source = "extends Control
@@ -15,6 +16,10 @@ func _ready() -> void:
 	for c in get_children() :
 		if c.has_method(\"load_scene_path\") :
 			c.load_scene_path()
+
+
+func _on_controls_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://ui/controls_settings/controls_settings.tscn\")
 "
 
 [node name="LevelSelectScreen" type="Control"]
@@ -74,3 +79,15 @@ theme = ExtResource("3_wccys")
 text = "LEVEL SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ControlsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 872.0
+offset_top = 568.0
+offset_right = 1136.0
+offset_bottom = 632.0
+theme = ExtResource("3_wccys")
+text = "CONTROLS"
+script = ExtResource("4_0ug5h")
+
+[connection signal="pressed" from="ControlsButton" to="." method="_on_controls_button_pressed"]

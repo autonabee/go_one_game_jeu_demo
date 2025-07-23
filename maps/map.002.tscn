@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://85ntlrqo7ni8" path="res://assets/map_assets_ready/obstacles/my_cactus_tall_a.tscn" id="4_g7krw"]
 [ext_resource type="PackedScene" uid="uid://cyhdj68rpgnac" path="res://assets/map_assets_ready/obstacles/my_cactus_tall_b.tscn" id="5_3xoke"]
 [ext_resource type="PackedScene" uid="uid://de6ttymk0t1j7" path="res://assets/map_assets_ready/target.tscn" id="6_bhyux"]
-[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://ui/player.tscn" id="7_4ebgf"]
+[ext_resource type="PackedScene" uid="uid://buek3bvitdwok" path="res://player/player.tscn" id="7_4ebgf"]
 [ext_resource type="PackedScene" uid="uid://mq3u3f4ortpb" path="res://assets/map_assets_ready/obstacles/my_chest.tscn" id="7_ndjld"]
 [ext_resource type="PackedScene" uid="uid://s4gqfnssgw67" path="res://assets/map_assets_ready/flags/my_flag_checkers.tscn" id="8_jbirh"]
 [ext_resource type="PackedScene" uid="uid://30d82mn4kfjj" path="res://assets/map_assets_ready/obstacles/my_cannon_mobile.tscn" id="8_uomgr"]

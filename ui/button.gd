@@ -1,3 +1,8 @@
+"""
+Script attaché à tous les boutons de l'interface (sauf les boutons de sélection du niveau)
+Permet de sélectionner un bouton avec la manette
+"""
+
 extends Button
 
 
