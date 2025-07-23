@@ -36,7 +36,7 @@ The player has a limited amount of time to complete a level while scoring as man
 ## File Overview
 
 - `assets/` : Contains models, materials, images and fonts used in the game
-    - `assets/map_assets_ready/` : Prebuilt scenes of obstacles and targets, ready to be placed in a map
+	- `assets/map_assets_ready/` : Prebuilt scenes of obstacles and targets, ready to be placed in a map
 - `maps/` : Contains the game levels
 - `player/` : Scenes and scripts for the player, gun and bullet 
 - `ui/` : Level selection menu and transition screens
@@ -53,4 +53,3 @@ The player has a limited amount of time to complete a level while scoring as man
 ## Credits
 
 Credits for all the assets used can be found in `CREDITS.md`.
-

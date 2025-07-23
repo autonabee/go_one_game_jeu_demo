@@ -119,7 +119,6 @@ func _input(event: InputEvent) -> void:
 			
 			InputMap.action_erase_events(action_to_remap)
 			InputMap.action_add_event(action_to_remap, event)
-			
 			ConfigFileHandler.save_controls(action_to_remap,event)
 			
 			_update_action_list(remapping_button, event)
@@ -134,7 +133,9 @@ func _input(event: InputEvent) -> void:
 func _update_action_list(button: Button,event: InputEvent) -> void:
 	"""
 	Met à jour les labels de l'InputButton concerné
-	button
+	Paramètres : 
+		button: Button : l'InputButton en train d'être remappé
+		event: InputEvent : la nouvelle commande attribuée à cette action
 	"""
 	var event_key = event.as_text()
 	if events_name.has(event_key):

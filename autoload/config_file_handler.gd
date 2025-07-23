@@ -22,8 +22,9 @@ func _ready() -> void:
 func save_controls(action: StringName, event: InputEvent) -> void:
 	"""
 	Ajoute une nouvelle entrée dans la section controls du fichier config
-	key : action:StringName, une action du jeu
-	value : event_str:String, la commande pour réaliser cette action
+	Dictionnaire : 
+		key : action:StringName, une action du jeu
+		value : event_str:String, la commande pour réaliser cette action
 	"""
 	var event_str
 	if event is InputEventJoypadButton:
@@ -36,8 +37,9 @@ func save_controls(action: StringName, event: InputEvent) -> void:
 func load_controls() -> Dictionary:
 	"""
 	Crée un dictionnaire à partir du fichier config et le retourne
-	keys : String
-	values : InputEvent
+	Dictionnaire : 
+		keys : String
+		values : InputEvent
 	"""
 	var controls = {}
 	var keys = config.get_section_keys("controls")
