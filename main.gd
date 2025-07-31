@@ -61,7 +61,6 @@ func unlock_next_level() -> void:
 	if str(next_num) not in unlocked_levels and ResourceLoader.exists(map) :
 		unlocked_levels.append(str(next_num))
 
-
 func save_game() -> void:
 	"""
 	Fonction sauvegardant les données de sauvegarde (best_scores, unlocked_levels) de manière persistante.

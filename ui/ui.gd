@@ -1,7 +1,8 @@
 extends CanvasLayer
 
-signal start_game(next : bool) # signal pour lancer une nouvelle partie, 
-							# arg : next = true s'il faut passer au niveau suivant, false sinon
+signal start_level # signal pour lancer une nouvelle partie
+signal next_level # signal pour passer au niveau suivant
+signal retry_level # signal pour recharger le niveau
 
 func _on_start_button_pressed() -> void:
 	"""
@@ -9,7 +10,7 @@ func _on_start_button_pressed() -> void:
 	Cache le bouton et le texte, émet le signal start_game
 	"""
 	game_screen()
-	start_game.emit(false)
+	start_level.emit()
 
 func _on_next_button_pressed() -> void:
 	"""
@@ -17,7 +18,11 @@ func _on_next_button_pressed() -> void:
 	Cache le bouton et le texte, émet le signal start_game
 	"""
 	start_screen()
-	start_game.emit(true)
+	next_level.emit()
+
+func _on_retry_button_pressed() -> void:
+	start_screen()
+	retry_level.emit()
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
@@ -32,6 +37,7 @@ func start_screen() -> void:
 	
 	$UIControl/FinishLabel.hide()
 	$UIControl/NextButton.hide()
+	$UIControl/RetryButton.hide()
 	$UIControl/BestScoreLabel.hide()
 	$UIControl/ScoreLabel.hide()
 	$UIControl/TimerLabel.hide()
@@ -49,6 +55,7 @@ func game_screen() -> void:
 	
 	$UIControl/FinishLabel.hide()
 	$UIControl/NextButton.hide()
+	$UIControl/RetryButton.hide()
 	$UIControl/BestScoreLabel.hide()
 	$UIControl/StartButton.hide()
 	$UIControl/MenuButton.hide()
@@ -63,10 +70,9 @@ func game_over_screen(win : bool, score : int) -> void:
 		score : int, score du joueur
 	"""
 	$UIControl/MenuButton.show()
-	
+	$UIControl/StartButton.hide()
 	$UIControl/ScoreLabel.hide()
 	$UIControl/TimerLabel.hide()
-	$UIControl/StartButton.hide()
 	
 	if win :
 		$UIControl/FinishLabel.text = "Level \nComplete"
@@ -76,9 +82,10 @@ func game_over_screen(win : bool, score : int) -> void:
 		$UIControl/BestScoreLabel.text = "Score\n%s\nBest score\n%s" % [score, best_score]
 		$UIControl/BestScoreLabel.show()
 		
+		$UIControl/RetryButton.hide()
+		
 		$UIControl/NextButton.show()
 		$UIControl/NextButton.grab_focus()
-		
 	else :
 		$UIControl/FinishLabel.text = "Game \nOver"
 		$UIControl/FinishLabel.show()
@@ -91,6 +98,6 @@ func game_over_screen(win : bool, score : int) -> void:
 		$AnimationPlayer.play("game_over")
 		await $AnimationPlayer.animation_finished
 		
-		$UIControl/MenuButton.grab_focus()
-		
+		$UIControl/RetryButton.show()
+		$UIControl/RetryButton.grab_focus()
 		get_tree().paused = true

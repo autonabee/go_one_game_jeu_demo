@@ -2,7 +2,7 @@ extends Node3D
 
 var score: int
 var timer: int 
-var timeout_val: int = 10*60 # 90
+var timeout_val: int = 90
 var targets: Array[Node] # liste des cibles du niveau
 
 
@@ -64,29 +64,41 @@ func _on_finish_area_body_entered(body: Node3D) -> void:
 		Main.unlock_next_level()
 		Main.save_game()
 
-func new_game(next: bool) -> void:
+func start_current_level() -> void:
 	"""
 	Fonction reliée au signal start_game de l'UI
-	Si l'argument next est vrai, charge le niveau suivant
-	Sinon, réinitialise le niveau actuel
+	Réinitialise et lance le niveau actuel
 	"""
-	if next : 
-		Main.load_next_map()
-	else :
-		score = 0
-		timer = timeout_val
-		$Player.start($StartPosition.position)
-		$UI.game_screen()
-		$UI/UIControl/Timer.start()
-		get_tree().paused = false
+	score = 0
+	timer = timeout_val
+	$Player.start($StartPosition.position)
+	$UI.game_screen()
+	$UI/UIControl/Timer.start()
+	get_tree().paused = false
+
+func load_next_level() -> void:
+	"""
+	Fonction connectée au signal next_level de l'UI
+	Charge le niveau suivant
+	"""
+	Main.load_next_map()
+
+func retry_current_level() -> void:
+	"""
+	Fonction connectée au signal retry_level de l'UI
+	Recharge le niveau
+	"""
+	get_tree().reload_current_scene()
 
 ## Autres fonctions
 func connect_map_signals() -> void:
 	"""
-	Connecte les éléments de la liste targets
+	Connecte les signaux aux fonctions de la map
 	"""
 	for t in targets:
 		t.target_hit.connect(_on_target_target_hit)
 	
-	$UI.start_game.connect(new_game)
+	$UI.start_level.connect(start_current_level)
+	$UI.next_level.connect(load_next_level)
+	$UI.retry_level.connect(retry_current_level)
 	$FinishArea.body_entered.connect(_on_finish_area_body_entered)

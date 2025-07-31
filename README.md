@@ -15,6 +15,7 @@ The player has a limited amount of time to complete a level while scoring as man
 - **Timed levels** with end platform to reach before timeout
 - **Level selection menu** and **transition screens** between levels
 - **Progress saving** to keep track of unlocked levels and best scores
+- **Controls settings** to remap game controls
 
 ## Installation
 
@@ -37,9 +38,10 @@ The player has a limited amount of time to complete a level while scoring as man
 
 - `assets/` : Contains models, materials, images and fonts used in the game
 	- `assets/map_assets_ready/` : Prebuilt scenes of obstacles and targets, ready to be placed in a map
+- `autoload/` : Contains scripts that are global variables
 - `maps/` : Contains the game levels
 - `player/` : Scenes and scripts for the player, gun and bullet 
-- `ui/` : Level selection menu and transition screens
+- `ui/` : Level selection menu, controls settings and transition screens
 - `main.tscn` and `main.gd` : Main scene and script to start the game
 
 ## Possible Improvements
@@ -48,7 +50,8 @@ The player has a limited amount of time to complete a level while scoring as man
 - **Respawning** : The player respawns at the last position on the floor before the fall. If the player is in movement, it sometimes causes an endless falling and respawning loop.
 - **Movement** : The game is very sensitive along the x-axis which can cause some sharp turns.
 - **User interface** : The game isn't paused between the end of a level and the beginning of another.
-- **Add a pause button**
+- **Controls settings** : Doesn't detect if one event is attributed to different actions
+- **Add a pause button** and access to the menus in a level
 
 ## Credits
 
