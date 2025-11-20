@@ -20,7 +20,7 @@ The player has a limited amount of time to complete a level while scoring as man
 ## Installation
 ### Executable game only
 #### Instructions
-1. Download the `game-executable` folder
+1. Download the ZIP file of the project, extract only the `game-executable` folder
 2. Run the `go_one_game_demo.exe`file
 
 ### Full installation
