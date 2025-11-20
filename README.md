@@ -20,7 +20,7 @@ The player has a limited amount of time to complete a level while scoring as man
 ## Installation
 ### Executable game only
 #### Instructions
-1. Download the ZIP file of the project, extract only the `game-executable` folder
+1. Download the ZIP of the project, extract only the `game-executable` folder
 2. Run the `go_one_game_demo.exe`file
 
 ### Full installation
@@ -28,7 +28,8 @@ The player has a limited amount of time to complete a level while scoring as man
 - **Godot Engine** (download: https://godotengine.org/download/windows/)
 
 #### Instructions
-1. Clone the repository:
+1. Download the ZIP and extract the files OR
+ Clone the repository:
 ```bash
  git clone https://github.com/autonabee/go_one_game_jeu_demo.git
 ```
