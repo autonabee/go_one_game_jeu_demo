@@ -18,11 +18,16 @@ The player has a limited amount of time to complete a level while scoring as man
 - **Controls settings** to remap game controls
 
 ## Installation
+### Executable game only
+#### Instructions
+1. Download the `game-executable` folder
+2. Run the `go_one_game_demo.exe`file
 
-### Prerequisites
+### Full installation
+#### Prerequisites
 - **Godot Engine** (download: https://godotengine.org/download/windows/)
 
-### Instructions
+#### Instructions
 1. Clone the repository:
 ```bash
  git clone https://github.com/autonabee/go_one_game_jeu_demo.git
@@ -39,6 +44,7 @@ The player has a limited amount of time to complete a level while scoring as man
 - `assets/` : Contains models, materials, images and fonts used in the game
 	- `assets/map_assets_ready/` : Prebuilt scenes of obstacles and targets, ready to be placed in a map
 - `autoload/` : Contains scripts that are global variables
+- `game-executable` : Contains the executable files to play the game
 - `maps/` : Contains the game levels
 - `player/` : Scenes and scripts for the player, gun and bullet 
 - `ui/` : Level selection menu, controls settings and transition screens
