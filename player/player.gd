@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	var right := _cam.global_basis.x
 	
 	# Créer un vecteur de direction selon la base de la caméra
+
 	var move_direction := forward * raw_input.y + right * raw_input.x * x_dampening # Diminuer la sensibilité sur l'axe x
 	move_direction.y = 0.0 # Annuler les déplacements sur l'axe y
 	move_direction = move_direction.normalized()
