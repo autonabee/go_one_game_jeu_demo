@@ -5,7 +5,7 @@ var acceleration := 5.0
 var rotation_speed := 2.0
 var jump_impulse := 12.0
 
-var x_dampening := 0.2
+var x_dampening := 0.2 # Augmenter pour diminuer la sensibilité du joystick en X
 
 var last_movement_direction := Vector3.BACK
 var gravity := -30.0
